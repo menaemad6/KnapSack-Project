@@ -47,11 +47,16 @@ def solve_brute_force(weights, values, capacity):
 
     end_time = time.time()
 
-    execution_time = end_time - start_time
+    execution_time = (end_time - start_time) * 1e6
+
+    selected_items = {
+        f"Item number {index + 1}": {"value": values[index], "weight": weights[index]}
+        for index in best_items
+    }
 
     return {
         "max_profit": best_profit,
-        "selected_items": best_items,
+        "selected_items": selected_items,
         "execution_time": str(execution_time)[:6] + "e3 ns"
     }
 

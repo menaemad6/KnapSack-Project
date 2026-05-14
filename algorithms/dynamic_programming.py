@@ -39,13 +39,18 @@ def solve_dp(weights, values, capacity):
 
     selected_items.reverse()
 
+    selected_items_dict = {
+        f"Item number {index + 1}": {"value": values[index], "weight": weights[index]}
+        for index in selected_items
+    }
+
     end_time = time.time()
 
     execution_time = (end_time - start_time) * 1e6
 
     return {
         "max_profit": max_profit,
-        "selected_items": selected_items,
+        "selected_items": selected_items_dict,
         "execution_time": str(execution_time)[:6] + "e3 ns"
     }
 
