@@ -37,9 +37,20 @@ def get_scaling_benchmark_api(sizes=None, trials=5):
     return run_scaling_benchmark(sizes, trials)
 
 def main():
-    """Main entry point that starts the application GUI when run directly."""
-    # Import locally inside main to prevent circular imports
-    from ui.interface import get_user_input
+    """Main entry point that starts the application GUI and runs the Web API backend concurrently."""
+    # 1. Start the backend API server in a background daemon thread
+    try:
+        import threading
+        from backend_server import run_server
+        
+        api_thread = threading.Thread(target=run_server, args=(8000,), daemon=True)
+        api_thread.start()
+        print("[API] Background Web API Backend initialized on http://localhost:8000!")
+    except Exception as e:
+        print(f"[API WARN] Could not start Web API Backend (it may already be running): {e}")
+
+    # 2. Launch the desktop GUI on the main thread
+    from gui.interface import get_user_input
     get_user_input()
 
 if __name__ == "__main__":
