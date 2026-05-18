@@ -8,10 +8,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-from algorithms.brute_forcce import solve_brute_force
-from algorithms.dynamic_programming import solve_dp
-from algorithms.greedy import solve_greedy
-from utils.input_processor import process_input
+from main import solve_knapsack_api
 
 
 def _format_algorithm_result(title, result):
@@ -114,19 +111,33 @@ def get_user_input():
                 weights_parts.append(weight_raw)
                 values_parts.append(value_raw)
 
-            weights, values, capacity = process_input(
+            api_response = solve_knapsack_api(
                 ",".join(weights_parts),
                 ",".join(values_parts),
                 capacity_entry.get(),
             )
 
-            brute_force_result = solve_brute_force(weights, values, capacity)
-            dynamic_result = solve_dp(weights, values, capacity)
-            greedy_result = solve_greedy(weights, values, capacity)
+            perf_res = api_response["results"]
+
+            bf_result = {
+                "max_profit": perf_res["brute_force"]["max_profit"],
+                "selected_items": perf_res["brute_force"]["selected_items"],
+                "execution_time": f"{perf_res['brute_force']['execution_time_ms']:.4f} ms" if perf_res["brute_force"]["execution_time_ms"] is not None else perf_res["brute_force"].get("status", "Skipped")
+            }
+            dp_result = {
+                "max_profit": perf_res["dynamic_programming"]["max_profit"],
+                "selected_items": perf_res["dynamic_programming"]["selected_items"],
+                "execution_time": f"{perf_res['dynamic_programming']['execution_time_ms']:.4f} ms"
+            }
+            greedy_result = {
+                "max_profit": perf_res["greedy"]["max_profit"],
+                "selected_items": perf_res["greedy"]["selected_items"],
+                "execution_time": f"{perf_res['greedy']['execution_time_ms']:.4f} ms"
+            }
 
             output = [
-                _format_algorithm_result("Brute Force", brute_force_result),
-                _format_algorithm_result("Dynamic Programming", dynamic_result),
+                _format_algorithm_result("Brute Force", bf_result),
+                _format_algorithm_result("Dynamic Programming", dp_result),
                 _format_algorithm_result("Greedy", greedy_result),
             ]
 
