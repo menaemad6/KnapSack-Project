@@ -70,6 +70,7 @@ KnapSack-Project/
 │
 ├── main.py                    # 🚀 Primary Controller / Core API Layer
 ├── PROJECT_REQUIRMENTS.md     # 📝 Course requirements and deliverables
+├── CONTRIBUTIONS.md           # 👥 Detailed Team Contributions & Role Breakdown
 ├── DOCUMENTATION.md           # 📚 Full Academic & Technical Report (For TA)
 │
 ├── algorithms/                # 🧠 Core Solver Implementations
@@ -77,7 +78,7 @@ KnapSack-Project/
 │   ├── dynamic_programming.py  # Exact bottom-up tabular solver
 │   └── greedy.py              # Custom value-to-weight ratio heuristic
 │
-├── ui/                        # 🎨 Presentation Layer
+├── gui/                       # 🎨 Presentation Layer
 │   └── interface.py           # Tkinter Graphical User Interface
 │
 ├── utils/                     # 🛠️ Utility Functions
