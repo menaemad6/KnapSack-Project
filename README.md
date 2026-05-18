@@ -70,7 +70,6 @@ KnapSack-Project/
 │
 ├── main.py                    # 🚀 Primary Controller / Core API Layer
 ├── PROJECT_REQUIRMENTS.md     # 📝 Course requirements and deliverables
-├── MY_WORK.md                 # 📋 Completed tasks and report drafts
 ├── DOCUMENTATION.md           # 📚 Full Academic & Technical Report (For TA)
 │
 ├── algorithms/                # 🧠 Core Solver Implementations

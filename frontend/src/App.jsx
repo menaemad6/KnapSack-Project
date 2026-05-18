@@ -27,18 +27,18 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-8 font-sans selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 sm:p-8 font-sans selection:bg-zinc-100 selection:text-zinc-950">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <Header />
 
         {/* Global Error Banner */}
         {error && (
-          <div className="mb-6 p-4 bg-rose-950/40 border border-rose-800/60 text-rose-300 rounded-2xl flex items-start gap-3 backdrop-blur-sm animate-fadeIn">
-            <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+          <div className="mb-6 p-4 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-xl flex items-start gap-3 backdrop-blur-sm animate-fadeIn">
+            <AlertCircle className="w-4.5 h-4.5 flex-shrink-0 mt-0.5 text-zinc-400" />
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider">Input Parameter Error</p>
-              <p className="text-sm mt-0.5 font-medium">{error}</p>
+              <p className="text-[10px] font-bold uppercase tracking-wider font-mono text-zinc-500">Execution Blocked</p>
+              <p className="text-xs mt-0.5 font-medium">{error}</p>
             </div>
           </div>
         )}

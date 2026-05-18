@@ -30,29 +30,29 @@ export default function InputForm({
   };
 
   return (
-    <div className="bg-slate-800/40 border border-slate-700/60 rounded-2xl p-6 shadow-xl backdrop-blur-sm">
-      <div className="flex justify-between items-center mb-6 border-b border-slate-700/60 pb-3">
-        <h2 className="text-base font-bold text-indigo-400 flex items-center gap-2">
-          <Sliders className="w-5 h-5" /> Problem Parameters
+    <div className="bg-zinc-900/40 border border-zinc-800/80 rounded-xl p-6 shadow-sm backdrop-blur-xs">
+      <div className="flex justify-between items-center mb-6 border-b border-zinc-800/60 pb-3">
+        <h2 className="text-sm font-bold text-zinc-100 flex items-center gap-2">
+          <Sliders className="w-4.5 h-4.5 text-zinc-400" /> Input Parameters
         </h2>
         <button
           type="button"
           onClick={loadDemoData}
-          className="text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1.5 transition-colors cursor-pointer bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 rounded-lg"
+          className="text-[10px] text-zinc-400 hover:text-zinc-100 font-mono tracking-wider uppercase border border-zinc-800 bg-zinc-900/80 px-2.5 py-1 rounded transition-colors cursor-pointer"
         >
-          <Sparkles className="w-3.5 h-3.5" /> Demo Data
+          <Sparkles className="w-3 h-3 inline mr-1 text-zinc-400" /> Demo Case
         </button>
       </div>
 
       <form onSubmit={onSubmit} className="space-y-6">
         <div>
-          <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
-            Items Configuration (Weight & Value)
+          <label className="block text-[10px] font-bold text-zinc-500 font-mono uppercase tracking-wider mb-3">
+            Item Configuration
           </label>
-          <div className="space-y-3 max-h-72 overflow-y-auto pr-1">
+          <div className="space-y-3.5 max-h-72 overflow-y-auto pr-1">
             {items.map((item, idx) => (
               <div key={idx} className="flex gap-3 items-center">
-                <div className="bg-slate-700/60 border border-slate-600/50 text-[10px] font-bold w-6 h-6 rounded-lg flex items-center justify-center text-slate-300">
+                <div className="bg-zinc-900 border border-zinc-800 text-[10px] font-bold w-6 h-6 rounded flex items-center justify-center text-zinc-400 font-mono">
                   {idx + 1}
                 </div>
                 <input
@@ -62,7 +62,7 @@ export default function InputForm({
                   min="1"
                   value={item.weight}
                   onChange={(e) => handleItemChange(idx, 'weight', e.target.value)}
-                  className="bg-slate-900/50 border border-slate-700 rounded-xl px-3 py-2 w-full text-sm focus:outline-none focus:border-indigo-500/80 focus:ring-1 focus:ring-indigo-500/80 transition-all text-slate-100 placeholder-slate-600"
+                  className="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 w-full text-sm focus:outline-none focus:border-zinc-500 transition-colors text-zinc-100 placeholder-zinc-700"
                 />
                 <input
                   type="number"
@@ -71,13 +71,13 @@ export default function InputForm({
                   min="1"
                   value={item.value}
                   onChange={(e) => handleItemChange(idx, 'value', e.target.value)}
-                  className="bg-slate-900/50 border border-slate-700 rounded-xl px-3 py-2 w-full text-sm focus:outline-none focus:border-indigo-500/80 focus:ring-1 focus:ring-indigo-500/80 transition-all text-slate-100 placeholder-slate-600"
+                  className="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 w-full text-sm focus:outline-none focus:border-zinc-500 transition-colors text-zinc-100 placeholder-zinc-700"
                 />
                 {items.length > 1 && (
                   <button
                     type="button"
                     onClick={() => removeItemRow(idx)}
-                    className="text-slate-500 hover:text-rose-400 p-1.5 rounded-lg hover:bg-rose-500/10 transition-all"
+                    className="text-zinc-500 hover:text-zinc-300 p-1.5 rounded hover:bg-zinc-800/40 transition-colors cursor-pointer"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -88,15 +88,15 @@ export default function InputForm({
           <button
             type="button"
             onClick={addItemRow}
-            className="mt-4 text-xs text-indigo-400 font-semibold hover:text-indigo-300 flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="mt-4 text-[11px] text-zinc-400 font-bold hover:text-zinc-100 flex items-center gap-1 transition-colors cursor-pointer font-mono uppercase tracking-wider"
           >
-            <Plus className="w-3.5 h-3.5" /> Add New Item
+            <Plus className="w-3.5 h-3.5" /> Add Row
           </button>
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-            Knapsack Weight Capacity
+          <label className="block text-[10px] font-bold text-zinc-500 font-mono uppercase tracking-wider mb-2">
+            Capacity (W)
           </label>
           <input
             type="number"
@@ -105,24 +105,24 @@ export default function InputForm({
             min="1"
             value={capacity}
             onChange={(e) => setCapacity(e.target.value)}
-            className="bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-2.5 w-full text-sm focus:outline-none focus:border-indigo-500/80 focus:ring-1 focus:ring-indigo-500/80 transition-all text-slate-100 placeholder-slate-600"
+            className="bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-2.5 w-full text-sm focus:outline-none focus:border-zinc-500 transition-colors text-zinc-100 placeholder-zinc-700"
           />
         </div>
 
-        <div className="flex gap-3 pt-2 border-t border-slate-700/60">
+        <div className="flex gap-3 pt-3 border-t border-zinc-800/60">
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-700 font-bold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 cursor-pointer transition-all shadow-lg shadow-indigo-600/10 hover:shadow-indigo-600/20 active:scale-95"
+            className="flex-1 bg-zinc-100 hover:bg-zinc-200 disabled:bg-zinc-800 text-zinc-950 font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-1.5 cursor-pointer transition-colors uppercase tracking-wider"
           >
-            <Play className="w-4 h-4 fill-current" /> {loading ? 'Computing...' : 'Solve Problem'}
+            <Play className="w-3.5 h-3.5 fill-current" /> {loading ? 'Solving...' : 'Run Solver'}
           </button>
           <button
             type="button"
             onClick={onReset}
-            className="bg-slate-700/60 border border-slate-600/40 hover:bg-slate-600 hover:text-slate-100 text-slate-300 px-4 py-2.5 rounded-xl text-sm flex items-center justify-center cursor-pointer transition-all active:scale-95"
+            className="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-300 px-4 py-2.5 rounded-lg text-xs flex items-center justify-center cursor-pointer transition-colors"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-3.5 h-3.5" />
           </button>
         </div>
       </form>
