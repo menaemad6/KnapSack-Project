@@ -118,3 +118,25 @@ python main.py --test
 performs two automated checks:
 1. **Parser Validation**: Confirms that invalid characters, empty values, and formatting errors are caught and trigger clean user warnings.
 2. **Algorithm Correctness**: Solves a known test case and verifies that all three algorithms return the correct optimal profit of `7`.
+
+---
+
+## 6. React Frontend & Modern Component Architecture
+
+To demonstrate the extensible, web-ready design of our system, we built a modern React dashboard located in the `/frontend` directory. 
+
+### 6.1 Modular Component Design
+To ensure clean code and ease of maintenance, the React dashboard is divided into distinct, reusable files, avoiding monolithic structure bottlenecks:
+- **`Header.jsx`**: Displays a glowing gradient branding title and a live "API Online" network pinging status.
+- **`InputForm.jsx`**: Handles row additions, deletions, capacity checks, and features a **Demo Data Shortcut Button** to populate test data with one click.
+- **`EmptyState.jsx`**: Renders a sleek graphic and guide text when the app is in a standby, non-solved state.
+- **`ResultCards.jsx`**: Formats individual profits and microsecond timings into separate glowing visual panels.
+- **`ItemsTable.jsx`**: Maps which item combinations were chosen, rendering structured chips showing item indexes, values, and weights.
+- **`PerformanceSummary.jsx`**: Evaluates active speedups between solvers and outputs relative timing results on the fly.
+
+### 6.2 Custom React Hook (`useKnapsack.js`)
+All state variables (`loading`, `error`, `result`) and networking fetch requests are isolated into a custom React hook `useKnapsack.js`. This abstracts networking logic completely away from UI presentation layout.
+
+### 6.3 Threaded Server Exposing Backend Data
+When executing `python main.py`, a background thread starts `backend_server.py` concurrently on port `8000` while launching the Tkinter GUI. This allows the React frontend to fetch results directly from our Python solver engine without needing separate terminal setups or manual API executions!
+
