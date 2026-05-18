@@ -78,6 +78,7 @@ To make the code maintainable, we separated the calculation logic completely fro
 3. `main.py` forwards the inputs to the parser, runs the benchmark engine, and gets the exact elapsed execution times in milliseconds.
 4. `main.py` returns a clean, raw data dictionary back to the GUI.
 5. The GUI formats and displays the results in the text pane.
+6. The GUI appends a **Performance Comparison Summary Table** at the bottom of the results window, dynamically calculating and displaying the relative speed differences between the algorithms (e.g. how many times faster Greedy is compared to Dynamic Programming, or how many times faster Dynamic Programming is compared to Brute Force) on the fly.
 
 *Why this is useful*: By wrapping all operations inside `main.py` and returning raw data, the backend is 100% ready to be integrated with a lightweight Python web server (like FastAPI) to serve a modern React frontend without changing a single line of calculation code.
 

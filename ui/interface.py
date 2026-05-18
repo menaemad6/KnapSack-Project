@@ -31,6 +31,65 @@ def _format_algorithm_result(title, result):
     )
 
 
+def _generate_performance_summary(perf_res):
+    bf = perf_res["brute_force"]
+    dp = perf_res["dynamic_programming"]
+    gr = perf_res["greedy"]
+
+    bf_time = bf.get("execution_time_ms")
+    dp_time = dp.get("execution_time_ms")
+    gr_time = gr.get("execution_time_ms")
+
+    bf_time_str = f"{bf_time:.4f} ms" if bf_time is not None else bf.get("status", "Skipped")
+    dp_time_str = f"{dp_time:.4f} ms" if dp_time is not None else "N/A"
+    gr_time_str = f"{gr_time:.4f} ms" if gr_time is not None else "N/A"
+
+    bf_profit = bf.get("max_profit") if bf.get("max_profit") is not None else "N/A"
+    dp_profit = dp.get("max_profit") if dp.get("max_profit") is not None else "N/A"
+    gr_profit = gr.get("max_profit") if gr.get("max_profit") is not None else "N/A"
+
+    summary_lines = [
+        "=" * 60,
+        "              ⚡ PERFORMANCE COMPARISON SUMMARY              ",
+        "=" * 60,
+        f"  {'Algorithm':<22} | {'Max Profit':<12} | {'Execution Time':<15}",
+        "-" * 60,
+        f"  {'Brute Force (O(2^N))':<22} | {bf_profit:<12} | {bf_time_str:<15}",
+        f"  {'Dynamic Prog. (O(N*W))':<22} | {dp_profit:<12} | {dp_time_str:<15}",
+        f"  {'Greedy Ratio (O(N^2))':<22} | {gr_profit:<12} | {gr_time_str:<15}",
+        "-" * 60,
+        "  Speed Comparisons:"
+    ]
+
+    comparisons = []
+    if bf_time is not None and dp_time is not None and dp_time > 0:
+        ratio = bf_time / dp_time
+        if ratio > 1:
+            comparisons.append(f"   • Dynamic Programming is {ratio:.2f}x faster than Brute Force.")
+        else:
+            comparisons.append(f"   • Brute Force is {1/ratio:.2f}x faster than Dynamic Programming.")
+
+    if dp_time is not None and gr_time is not None and gr_time > 0:
+        ratio = dp_time / gr_time
+        if ratio > 1:
+            comparisons.append(f"   • Greedy Heuristic is {ratio:.2f}x faster than Dynamic Programming.")
+        else:
+            comparisons.append(f"   • Dynamic Programming is {1/ratio:.2f}x faster than Greedy Heuristic.")
+
+    if bf_time is not None and gr_time is not None and gr_time > 0:
+        ratio = bf_time / gr_time
+        if ratio > 1:
+            comparisons.append(f"   • Greedy Heuristic is {ratio:.2f}x faster than Brute Force.")
+
+    if not comparisons:
+        comparisons.append("   • N/A (Not enough timing data to compare)")
+
+    summary_lines.extend(comparisons)
+    summary_lines.append("=" * 60)
+
+    return "\n".join(summary_lines)
+
+
 def get_user_input():
     """Build and run the Tkinter user interface for the Knapsack project."""
     root = tk.Tk()
@@ -139,6 +198,7 @@ def get_user_input():
                 _format_algorithm_result("Brute Force", bf_result),
                 _format_algorithm_result("Dynamic Programming", dp_result),
                 _format_algorithm_result("Greedy", greedy_result),
+                _generate_performance_summary(perf_res)
             ]
 
 

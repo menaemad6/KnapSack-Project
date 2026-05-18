@@ -59,7 +59,7 @@ graph TD
 - **Microsecond-Precise Benchmarking**: Employs `time.perf_counter()` to obtain exact, system-independent runtimes.
 - **Safety Thresholding**: Automatically bypasses Brute Force for inputs $N > 22$ to safeguard the execution thread.
 - **Clean API Design**: `main.py` provides clean functions (`solve_knapsack_api`) returning raw, standard JSON-like dicts, abstracting all computation away from UI files.
-- **Premium Tkinter Interface**: Form-based responsive layout with clean status banners and organized multi-column output displays.
+- **Premium Tkinter Interface**: Form-based responsive layout with clean status banners and organized multi-column output displays. Includes a **Live Performance Analytics Dashboard** at the bottom of the results window, calculating exact speed ratios between algorithms (e.g., "Greedy is 5.4x faster than Dynamic Programming") in real-time.
 
 ---
 
